@@ -9,6 +9,7 @@ class Robot:
         self.position = [0, 0]
         self.speed = 10
         self.size = [30, 30]
+        self.image = pygame.image.load("assets/robot.png")
 
 # si choca con un muro se le resta 1 de vida
     def recibir_dano_muro(self):
