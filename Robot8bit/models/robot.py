@@ -6,6 +6,9 @@ class Robot:
     def __init__(self):
         self.vida = 10
         self.traje_acuatico = False
+        self.position = [0, 0]
+        self.speed = 10
+        self.size = [30, 30]
 
 # si choca con un muro se le resta 1 de vida
     def recibir_dano_muro(self):
@@ -33,4 +36,18 @@ class Robot:
 # si el robot pierde el traje el valor del traje acuatico de establece a false
     def perder_traje_acuatico(self):
         self.traje_acuatico = False
+
+    def move_right (self):
+        self.position[0] += self.speed
+
+    def move_left(self):
+        self.position[0] -= self.speed
+
+    def move_up(self):
+        self.position[1] -= self.speed
+
+    def move_down(self):
+        self.position[1] += self.speed
+
+
 
