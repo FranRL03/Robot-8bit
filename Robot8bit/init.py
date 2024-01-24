@@ -20,8 +20,6 @@ def check_collision(player_one, obstacle):
         return True
     return False
 
-# keys = {"right": False, "left": False, "up": False, "down": False}
-
 screen = pygame.display.set_mode((800, 600))
 
 game_running = True
@@ -38,28 +36,16 @@ while game_running:
         if event.type == pygame.QUIT:
             game_running = False
 
-        #
-        # if event.type == pygame.KEYDOWN:
-        #     if event.key == pygame.K_RIGHT:
-        #         player_one.move_right()
-        #     if event.key == pygame.K_LEFT:
-        #         player_one.move_left()
-        #     if event.key == pygame.K_UP:
-        #         player_one.move_up()
-        #     if event.key == pygame.K_DOWN:
-        #         player_one.move_down()
-
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_LEFT]:
-                player_one.move_left()
-            if keys[pygame.K_RIGHT]:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
                 player_one.move_right()
-            if keys[pygame.K_UP]:
+            if event.key == pygame.K_LEFT:
+                player_one.move_left()
+            if event.key == pygame.K_UP:
                 player_one.move_up()
-            if keys[pygame.K_DOWN]:
+            if event.key == pygame.K_DOWN:
                 player_one.move_down()
 
-    # screen.fill(())
     screen.blit(background_image, background_rect)
 
     screen.blit(player_one.image, (player_one.position[0], player_one.position[1],  player_one.size[0], player_one.size[1]))
