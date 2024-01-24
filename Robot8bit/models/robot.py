@@ -7,7 +7,7 @@ class Robot:
         self.vida = 10
         self.traje_acuatico = False
         self.position = [0, 0]
-        self.speed = 10
+        self.speed = 2.5
         self.size = [30, 30]
         self.image = pygame.image.load("assets/robot.png")
 
@@ -49,6 +49,3 @@ class Robot:
 
     def move_down(self):
         self.position[1] += self.speed
-
-
-
