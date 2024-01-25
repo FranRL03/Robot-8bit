@@ -13,8 +13,8 @@ class Robot:
         self.vida = 10
         self.traje_acuatico = False
         self.position = [0, 0]
-        self.speed = 2.5
-        self.size = [30, 30]
+        self.speed = 6
+        self.size = [1,1]
         self.image = pygame.image.load("assets/helloKitty.png")
 
 # si choca con un muro se le resta 1 de vida

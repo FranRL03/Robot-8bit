@@ -4,7 +4,7 @@ import pygame
 class Muro():
     def __init__(self, x, y, width, height):
         # self.position = [100, 100]
-        self.size = [20, 20]
+        self.size = [5, 5]
         self.image = pygame.image.load("assets/spikes.png")
         self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()
@@ -15,7 +15,7 @@ class Muro():
         screen.blit(self.image, (self.rect.x, self.rect.y, self.rect.width, self.rect.height))
 
     def check_collision(player_one, obstacles):
-        player_rect = pygame.Rect(player_one.position[0], player_one.position[1], player_one.size[0],
+        player_rect = pygame.Rect(player_one.position[0], player_one.position[1], player_one.size[1],
                                   player_one.size[1])
 
         for obstacle in obstacles:

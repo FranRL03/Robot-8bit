@@ -12,11 +12,6 @@ robot = Robot()
 obstacles = [Muro(100, 200, 80, 80), Muro(300, 400, 80, 80), Muro(500, 100, 80, 80)]
 lakes = [Lake(220, 100, 150, 150), Lake(520, 300, 150, 150)]
 
-# CARGA DEL FONDO
-background_image = pygame.image.load("assets/fondo.png")
-background_rect = background_image.get_rect()
-
-
 # CONFIGURACION DE PANTALLA
 for obstacle in obstacles:
     obstacle.image = pygame.transform.scale(obstacle.image, (50, 50))
@@ -24,9 +19,14 @@ for obstacle in obstacles:
 for lake in lakes:
     lake.image = pygame.transform.scale(lake.image, (150, 150))
 
-robot.image = pygame.transform.scale(robot.image, (80, 80))
-screen_width, screen_height = 800, 600
+robot.image = pygame.transform.scale(robot.image, (100, 100))
+screen_width, screen_height = 1650, 900
 screen = pygame.display.set_mode((screen_width, screen_height))
+
+# CARGA DEL FONDO
+background_image = pygame.image.load("assets/fondo.png")
+background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
+background_rect = background_image.get_rect()
 
 barra_vida = pygame.Surface((screen_width, 50))
 barra_vida.fill((181, 193, 152))
@@ -51,8 +51,8 @@ while game_running:
         game_running = False
 
     # LIMITES DE LA PANTALLA
-    robot.position = [max(0, min(robot.position[0], screen_width - robot.size[0])),
-                      max(0, min(robot.position[1], screen_height - robot.size[1]))]
+    robot.position = [max(0, min(robot.position[0], screen_width - robot.size[0]- 50)),
+                      max(0, min(robot.position[1], screen_height - robot.size[1] - 75))]
 
     # ALGUNOS EVENTOS
     for event in pygame.event.get():
@@ -72,6 +72,7 @@ while game_running:
 
     # RENDERIZACIÓN
     screen.blit(background_image, background_rect)
+    # screen.blit(background_image, (0, 0))
 
 
     # CREACION DE LOS OBJETOS
