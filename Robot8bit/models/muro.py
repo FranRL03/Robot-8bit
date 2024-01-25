@@ -4,7 +4,7 @@ import pygame
 class Muro():
     def __init__(self, x, y, width, height):
         # self.position = [100, 100]
-        self.size = [5, 5]
+        self.size = [1, 1]
         self.image = pygame.image.load("assets/spikes.png")
         self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()

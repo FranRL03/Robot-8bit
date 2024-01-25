@@ -13,9 +13,9 @@ class Robot:
         self.vida = 10
         self.traje_acuatico = False
         self.position = [0, 0]
-        self.speed = 6
+        self.speed = 8
         self.size = [1,1]
-        self.image = pygame.image.load("assets/helloKitty.png")
+        self.image = pygame.image.load("assets/robot.png")
 
 # si choca con un muro se le resta 1 de vida
     def recibir_dano_muro(self):
@@ -36,7 +36,6 @@ class Robot:
                     lake.rect.y <= self.position[1] <= lake.rect.y + lake.rect.height
             ):
                 self.recibir_dano_agua()
-                print("¡Colisión con agua! Vida actual:", self.vida)
 
 # la pocion que recoje solo puede curar de 1 a 5 puntos de vida
 # y las curaciones recibidas no pueden pasar de los 10 puntos de vida

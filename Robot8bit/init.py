@@ -20,8 +20,12 @@ for lake in lakes:
     lake.image = pygame.transform.scale(lake.image, (150, 150))
 
 robot.image = pygame.transform.scale(robot.image, (100, 100))
-screen_width, screen_height = 1650, 900
-screen = pygame.display.set_mode((screen_width, screen_height))
+# screen_width, screen_height = 1650, 900
+info = pygame.display.Info()
+screen_width = info.current_w
+screen_height = info.current_h
+# screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 # CARGA DEL FONDO
 background_image = pygame.image.load("assets/fondo.png")
@@ -51,7 +55,7 @@ while game_running:
         game_running = False
 
     # LIMITES DE LA PANTALLA
-    robot.position = [max(0, min(robot.position[0], screen_width - robot.size[0]- 50)),
+    robot.position = [max(0, min(robot.position[0], screen_width - robot.size[0]- 90)),
                       max(0, min(robot.position[1], screen_height - robot.size[1] - 75))]
 
     # ALGUNOS EVENTOS
