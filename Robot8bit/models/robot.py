@@ -1,6 +1,12 @@
 import random
+import time
 
 import pygame
+
+from models.lake import Lake
+
+lakes = [Lake(220, 100, 150, 150), Lake(520, 300, 150, 150)]
+
 
 class Robot:
     def __init__(self):
@@ -9,10 +15,11 @@ class Robot:
         self.position = [0, 0]
         self.speed = 2.5
         self.size = [30, 30]
-        self.image = pygame.image.load("assets/robot.png")
+        self.image = pygame.image.load("assets/helloKitty.png")
 
 # si choca con un muro se le resta 1 de vida
     def recibir_dano_muro(self):
+        time.sleep(0.1)
         self.vida -= 1
 
 # si lleva traje acuatico de vuelve un return vacio, es decir, None
@@ -21,6 +28,15 @@ class Robot:
         if self.traje_acuatico:
             return
         self.vida -= 3
+
+    def verificar_colision_agua(self):
+        for lake in lakes:
+            if (
+                    lake.rect.x <= self.position[0] <= lake.rect.x + lake.rect.width and
+                    lake.rect.y <= self.position[1] <= lake.rect.y + lake.rect.height
+            ):
+                self.recibir_dano_agua()
+                print("¡Colisión con agua! Vida actual:", self.vida)
 
 # la pocion que recoje solo puede curar de 1 a 5 puntos de vida
 # y las curaciones recibidas no pueden pasar de los 10 puntos de vida

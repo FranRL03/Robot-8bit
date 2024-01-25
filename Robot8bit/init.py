@@ -1,5 +1,6 @@
 import pygame
 
+from models.lake import Lake
 from models.muro import Muro
 from models.robot import Robot
 
@@ -7,22 +8,21 @@ pygame.init()
 
 # CLASES INSTANCIADAS
 robot = Robot()
+
 obstacles = [Muro(100, 200, 80, 80), Muro(300, 400, 80, 80), Muro(500, 100, 80, 80)]
+lakes = [Lake(220, 100, 150, 150), Lake(520, 300, 150, 150)]
 
 # CARGA DEL FONDO
 background_image = pygame.image.load("assets/fondo.png")
 background_rect = background_image.get_rect()
 
-# CARGA DE OBSTACULOS
-lake = pygame.image.load("assets/lake.png")
-lake = pygame.transform.scale(lake, (150, 150))
-
-# lake2 = pygame.image.load("assets/lake.png")
-# lake2 = pygame.transform.scale(lake, (150, 150))
 
 # CONFIGURACION DE PANTALLA
 for obstacle in obstacles:
     obstacle.image = pygame.transform.scale(obstacle.image, (50, 50))
+
+for lake in lakes:
+    lake.image = pygame.transform.scale(lake.image, (150, 150))
 
 robot.image = pygame.transform.scale(robot.image, (80, 80))
 screen_width, screen_height = 800, 600
@@ -37,31 +37,20 @@ vida_icon = pygame.transform.scale(vida_icon, (55, 55))
 # CONFIGURACION DEL TEXTO
 font = pygame.font.Font(None, 36)
 
-def check_collision(player_one, obstacles):
-    player_rect = pygame.Rect(player_one.position[0], player_one.position[1], player_one.size[0], player_one.size[1])
-
-    for obstacle in obstacles:
-        obstacle_rect = pygame.Rect(obstacle.rect.x, obstacle.rect.y, obstacle.rect.width, obstacle.rect.height)
-
-        if player_rect.colliderect(obstacle_rect):
-            return True
-
-    return False
-
-
 
 game_running = True
 while game_running:
 
     # VERIFICACION DE COLISIONES
-    collision = check_collision(robot, obstacles)
+    collision = Muro.check_collision(robot, obstacles)
 
     if collision:
-        robot.vida -= 1
+      robot.recibir_dano_muro()
 
     if robot.vida == 0:
         game_running = False
 
+    # LIMITES DE LA PANTALLA
     robot.position = [max(0, min(robot.position[0], screen_width - robot.size[0])),
                       max(0, min(robot.position[1], screen_height - robot.size[1]))]
 
@@ -84,13 +73,13 @@ while game_running:
     # RENDERIZACIÓN
     screen.blit(background_image, background_rect)
 
-    # CREACION DEL LAGO
-    screen.blit(lake, (220, 100))
-    screen.blit(lake, (520, 300))
 
-    # CREACION DE LOS MUROS
+    # CREACION DE LOS OBJETOS
     for obstacle in obstacles:
         screen.blit(obstacle.image, (obstacle.rect.x, obstacle.rect.y, obstacle.rect.width, obstacle.rect.height))
+
+    for lake in lakes:
+        screen.blit(lake.image, (lake.rect.x, lake.rect.y, lake.rect.width, lake.rect.height))
 
     screen.blit(barra_vida, (0, screen_height - 50))
 
