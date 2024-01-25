@@ -4,6 +4,7 @@ TILESIZE = 32
 FPS = 60
 
 ROBOT_LAYER = 1
+ROBOT_SPEED = 3
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
