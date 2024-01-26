@@ -1,7 +1,6 @@
-import pygame
-
-from Wall import Wall
-from sprites import *
+from models.ground import Ground
+from models.wall import Wall
+from models.sprites import *
 from config import *
 import sys
 
@@ -17,7 +16,7 @@ class Game:
     def createMap(self):
         for i, row in enumerate(map_design):
             for j, column in enumerate(row):
-                # Ground(self, j, i)
+                Ground(self, j, i)
                 if column == "M":
                     Wall(self, j, i)
                 if column == "R":
