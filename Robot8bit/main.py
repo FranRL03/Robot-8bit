@@ -1,3 +1,4 @@
+from models.enemy import Enemy
 from models.ground import Ground
 from models.wall import Wall
 from models.sprites import *
@@ -13,12 +14,15 @@ class Game:
 
         self.character_spritesheet = Spritesheet('assets/character.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
+        self.enemy_sprintesheet = Spritesheet('assets/enemy.png')
     def create_map(self):
         for i, row in enumerate(map_design):
             for j, column in enumerate(row):
                 Ground(self, j, i)
                 if column == "M":
                     Wall(self, j, i)
+                if column == "E":
+                    Enemy(self, j, i)
                 if column == "R":
                     Robot(self, j, i)
 
@@ -30,6 +34,7 @@ class Game:
         self.all_sprites = pygame.sprite.LayeredUpdates()
         self.walls = pygame.sprite.LayeredUpdates()
         self.spikes = pygame.sprite.LayeredUpdates()
+        self.enemies = pygame.sprite.LayeredUpdates()
 
         # se crea el mapa
         self.create_map()

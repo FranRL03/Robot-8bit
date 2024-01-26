@@ -5,11 +5,13 @@ WIN_HEIGHT = 480
 TILESIZE = 32
 FPS = 60
 
-ROBOT_LAYER = 3
+ROBOT_LAYER = 4
+ENEMY_LAYER = 3
 WALL_LAYER = 2
 GROUND_LAYER = 1
 
 ROBOT_SPEED = 3
+ENEMY_SPEED = 2
 
 ROBOT_SKIN = pygame.image.load("assets/single.png")
 
@@ -25,12 +27,12 @@ map_design = [
     'M    M             M',
     'M    MMMMM         M',
     'M    M             M',
-    'M    M             M',
     'M                  M',
-    'M     MMMMMMMMMM   M',
+    'M                  M',
+    'M               E  M',
     'M            MM    M',
     'M            MM    M',
-    'M            MM    M',
+    'M   E        MM    M',
     'M      MMMMMMMM    M',
     'M                  M',
     'MMMMMMMMMMMMMMMMMMMM',
