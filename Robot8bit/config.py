@@ -8,3 +8,10 @@ ROBOT_SPEED = 3
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
+
+
+# TILEMAP
+map_design = [
+
+    
+]
