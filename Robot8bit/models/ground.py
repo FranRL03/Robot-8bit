@@ -18,7 +18,7 @@ class Ground(pygame.sprite.Sprite):
         self.x_change = 0
         self.y_change = 0
 
-        self.image = self.game.terrain_spritesheet.getSprite(254, 352, self.width, self.height)
+        self.image = self.game.terrain_spritesheet.get_sprite(254, 352, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x

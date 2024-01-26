@@ -13,7 +13,7 @@ class Game:
 
         self.character_spritesheet = Spritesheet('assets/character.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
-    def createMap(self):
+    def create_map(self):
         for i, row in enumerate(map_design):
             for j, column in enumerate(row):
                 Ground(self, j, i)
@@ -32,7 +32,7 @@ class Game:
         self.spikes = pygame.sprite.LayeredUpdates()
 
         # se crea el mapa
-        self.createMap()
+        self.create_map()
 
     def events(self):
         # eventos del juego
@@ -56,17 +56,17 @@ class Game:
             self.update()
             self.draw()
         self.running = False
-    def gameOver(self):
+    def game_over(self):
         pass
-    def introScreen(self):
+    def intro_screen(self):
         pass
 
 g = Game()
-g.introScreen()
+g.intro_screen()
 g.new()
 while g.running:
     g.main()
-    g.gameOver()
+    g.game_over()
 
 pygame.quit()
 sys.exit()
