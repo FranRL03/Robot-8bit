@@ -12,19 +12,18 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
+        self.character_spritesheet = Spritesheet('assets/character.png')
+        self.terrain_spritesheet = Spritesheet('assets/terrain.png')
     def createMap(self):
         for i, row in enumerate(map_design):
-           for j, column in enumerate(row):
-               if column == "M":
+            for j, column in enumerate(row):
+                # Ground(self, j, i)
+                if column == "M":
                     Wall(self, j, i)
-                if column == "P":
+                if column == "R":
                     Robot(self, j, i)
 
-
-
     def new(self):
-        # se crea el mapa
-        self.createMap()
 
         # empezar el juego
         self.playing = True
@@ -33,7 +32,8 @@ class Game:
         self.walls = pygame.sprite.LayeredUpdates()
         self.spikes = pygame.sprite.LayeredUpdates()
 
-        self.robot = Robot(self, 1, 2)
+        # se crea el mapa
+        self.createMap()
 
     def events(self):
         # eventos del juego

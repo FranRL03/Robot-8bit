@@ -1,3 +1,5 @@
+import pygame.image
+
 WIN_WIDTH = 640
 WIN_HEIGHT = 480
 TILESIZE = 32
@@ -7,6 +9,8 @@ ROBOT_LAYER = 2
 WALL_LAYER = 1
 
 ROBOT_SPEED = 3
+
+ROBOT_SKIN = pygame.image.load("assets/single.png")
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)

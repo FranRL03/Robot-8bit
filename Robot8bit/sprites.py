@@ -3,6 +3,17 @@ from config import *
 import math
 import random
 
+class Spritesheet:
+    def __init__(self, file):
+        self.sheet = pygame.image.load(file).convert()
+
+    def getSprite(self, x, y, width, height):
+        sprite = pygame.Surface([width, height])
+        sprite.blit(self.sheet, (0,0), (x, y, width, height))
+        sprite.set_colorkey(BLACK)
+        return sprite
+
+
 class Robot(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
         self.game = game
@@ -20,8 +31,11 @@ class Robot(pygame.sprite.Sprite):
 
         self.facing = 'down'
 
-        self.image = pygame.Surface([self.width, self.height])
-        self.image.fill(RED)
+        self.image = self.game.character_spritesheet.getSprite(3, 2, self.width, self.height)
+        # image_to_load = ROBOT_SKIN
+        # self.image = pygame.Surface([self.width, self.height])
+        # self.image.set_colorkey(BLACK)
+        # self.image.blit(image_to_load, (0,0))
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
