@@ -1,4 +1,6 @@
 import pygame
+
+from Wall import Wall
 from sprites import *
 from config import *
 import sys
@@ -10,12 +12,25 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
+    def createMap(self):
+        for i, row in enumerate(map_design):
+           for j, column in enumerate(row):
+               if column == "M":
+                    Wall(self, j, i)
+                if column == "P":
+                    Robot(self, j, i)
+
+
+
     def new(self):
+        # se crea el mapa
+        self.createMap()
+
         # empezar el juego
         self.playing = True
 
         self.all_sprites = pygame.sprite.LayeredUpdates()
-        self.blocks = pygame.sprite.LayeredUpdates()
+        self.walls = pygame.sprite.LayeredUpdates()
         self.spikes = pygame.sprite.LayeredUpdates()
 
         self.robot = Robot(self, 1, 2)
@@ -42,17 +57,17 @@ class Game:
             self.update()
             self.draw()
         self.running = False
-    def game_over(self):
+    def gameOver(self):
         pass
-    def intro_screen(self):
+    def introScreen(self):
         pass
 
 g = Game()
-g.intro_screen()
+g.introScreen()
 g.new()
 while g.running:
     g.main()
-    g.game_over()
+    g.gameOver()
 
 pygame.quit()
 sys.exit()
