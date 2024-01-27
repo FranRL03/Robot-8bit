@@ -1,5 +1,12 @@
 import pygame.image
 
+# pygame.init()
+# info = pygame.display.Info()
+# WIN_WIDTH = info.current_w
+# WIN_HEIGHT = info.current_h
+
+BASE = "C:/Users/fjavi/Documents/2DAM/Robot-8bit/Robot8Bit"
+
 WIN_WIDTH = 640
 WIN_HEIGHT = 480
 TILESIZE = 32
@@ -13,11 +20,15 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-ROBOT_SKIN = pygame.image.load("./assets/single.png")
+# ROBOT_SKIN = pygame.image.load("./assets/single.png")
+ROBOT_SKIN = pygame.image.load(f"{BASE}/assets/single.png")
+# ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
+
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
 
 # TILEMAP
 map_design = [
