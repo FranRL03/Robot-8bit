@@ -22,8 +22,19 @@ class Game:
         self.intro_background = pygame.image.load('assets/introbackground.png')
         self.go_background = pygame.image.load('assets/gameover.png')
 
+    mapa_a_cargar = 'mapa.txt'
+
+
+    def cargar_mapa(mapa):
+        with open('mapa.txt', 'r') as archivo:
+            contenido = [linea.strip() for linea in archivo]
+
+        return contenido
+
+    mapa = cargar_mapa(mapa_a_cargar)
+
     def create_map(self):
-        for i, row in enumerate(map_design):
+        for i, row in enumerate(self.mapa):
             for j, column in enumerate(row):
                 Ground(self, j, i)
                 if column == "M":
@@ -32,20 +43,6 @@ class Game:
                     Enemy(self, j, i)
                 if column == "R":
                     Robot(self, j, i)
-
-    # def create_map(self):
-    #     tile_width = WIN_WIDTH // len(map_design[0])
-    #     tile_height = WIN_HEIGHT // len(map_design)
-    #
-    #     for i, row in enumerate(map_design):
-    #         for j, column in enumerate(row):
-    #             Ground(self, j * tile_width, i * tile_height)
-    #             if column == "M":
-    #                 Wall(self, j * tile_width, i * tile_height)
-    #             if column == "E":
-    #                 Enemy(self, j * tile_width, i * tile_height)
-    #             if column == "R":
-    #                 Robot(self, j * tile_width, i * tile_height)
 
     def new(self):
 
@@ -113,9 +110,9 @@ class Game:
         intro = True
 
         title = self.font.render('ROBOT 8-BITS', True, BLACK)
-        title_rect = title.get_rect(x=200, y=160)
+        title_rect = title.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2 - 30))
 
-        play_button = Button(250, 220, 100, 50, WHITE, BLACK, 'Jugar', 32)
+        play_button = Button(WIN_WIDTH/2 - 50, WIN_HEIGHT/2, 100, 50, WHITE, BLACK, 'Jugar', 32)
 
         while intro:
             for event in pygame.event.get():

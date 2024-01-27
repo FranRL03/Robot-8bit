@@ -1,14 +1,15 @@
 import pygame.image
 
 # pygame.init()
-# info = pygame.display.Info()
-# WIN_WIDTH = info.current_w
-# WIN_HEIGHT = info.current_h
+#
+# screen_info = pygame.display.Info()
+# WIN_WIDTH = screen_info.current_w
+# WIN_HEIGHT = screen_info.current_h
 
 BASE = "C:/Users/fjavi/Documents/2DAM/Robot-8bit/Robot8Bit"
 
-WIN_WIDTH = 640
-WIN_HEIGHT = 480
+WIN_WIDTH = 1245
+WIN_HEIGHT = 725
 TILESIZE = 32
 FPS = 60
 
@@ -80,15 +81,15 @@ map_design = [
 # M     AAAAA                           M
 # M                                     M
 # M                                     M
-# M               MMMMMMMMMMMMMMMMMMMMMMM
-# M                      MM        D    M
-# M                     MM     D        M
+# M    R          MMMMMMMMMMMMMMMMMMMMMMM
+# M                      MM             M
+# M                     MM              M
 # M          MMMMMMMMMMMMMMMMMMMMMMMMMMMM
 # M                                     M
+# M        E                            M
 # M                                     M
 # M                                     M
-# M                                     M
-# M                                     M
+# M                   E                 M
 # M                                     M
 # M                                     M
 # M                                     M
