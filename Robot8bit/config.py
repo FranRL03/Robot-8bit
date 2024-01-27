@@ -13,7 +13,7 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-ROBOT_SKIN = pygame.image.load("assets/single.png")
+ROBOT_SKIN = pygame.image.load("./assets/single.png")
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)

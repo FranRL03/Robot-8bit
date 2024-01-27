@@ -45,6 +45,7 @@ class Robot(pygame.sprite.Sprite):
     def update(self):
         self.movement()
         self.animate()
+        self.collide_enemy()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -68,6 +69,12 @@ class Robot(pygame.sprite.Sprite):
         if keys[pygame.K_DOWN]:
             self.y_change += ROBOT_SPEED
             self.facing = 'down'
+
+    def collide_enemy(self):
+        hits = pygame.sprite.spritecollide(self, self.game.enemies, False)
+        if hits:
+            self.kill()
+            self.game.playing = False
 
     def collide_walls(self, direccion):
         if direccion == "x":
