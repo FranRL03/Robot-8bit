@@ -13,7 +13,10 @@ WIN_HEIGHT = 725
 TILESIZE = 32
 FPS = 60
 
-ROBOT_LAYER = 6
+ROBOT_LAYER = 9
+BOMB_LAYER = 8
+WETSUIT_LAYER = 7
+POTION_LAYER = 6
 ENEMY_LAYER = 5
 WALL_LAYER = 4
 LAKE_LAYER = 3
@@ -23,9 +26,10 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-# ROBOT_SKIN = pygame.image.load("./assets/single.png")
 ROBOT_SKIN = pygame.image.load(f"{BASE}/assets/single.png")
 DIAMOND_SKIN = pygame.image.load(f"{BASE}/assets/diamond.png")
+POTION_SKIN = pygame.image.load(f"{BASE}/assets/pocion.png")
+BOMB_SKIN = pygame.image.load(f"{BASE}/assets/bomb.png")
 # ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
 
 

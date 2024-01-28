@@ -3,7 +3,7 @@ import pygame.event
 from models.button import Button
 from models.enemy import Enemy
 from models.ground import Ground
-from models.items import Diamond
+from models.items import Potion, Diamond, Wetsuit, Bomb
 from models.lake import Lake
 from models.wall import Wall
 from models.sprites import *
@@ -21,11 +21,11 @@ class Game:
         self.character_spritesheet = Spritesheet('assets/character.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
         self.lake_spritsheet = Spritesheet('assets/terrain.png')
-        self.enemy_sprintesheet = Spritesheet('assets/enemy.png')
-        self.bomb = Spritesheet('assets/bomb.png')
-        self.potion_sprintesheet = Spritesheet('assets/pocion.png')
-        self.wetsuit_sprintesheet = Spritesheet('assets/waterBottle.png')
-        self.diamond_sprintesheet = Spritesheet('assets/diamond.png')
+        self.enemy_spritesheet = Spritesheet('assets/enemy.png')
+        self.bomb_spritesheet = Spritesheet('assets/bomb.png')
+        self.potion_spritesheet = Spritesheet('assets/pocion.png')
+        self.wetsuit_spritesheet = Spritesheet('assets/waterBottle.png')
+        self.diamond_spritesheet = Spritesheet('assets/diamond.png')
         self.intro_background = pygame.image.load('assets/introbackground.png')
         self.go_background = pygame.image.load('assets/gameover.png')
 
@@ -52,8 +52,14 @@ class Game:
                     Robot(self, j, i)
                 if column == "A":
                     Lake(self, j, i)
+                if column == "P":
+                    Potion(self, j, i)
                 if column == "D":
                     Diamond(self, j, i)
+                if column == "T":
+                    Wetsuit(self, j, i)
+                if column == "B":
+                    Bomb(self, j, i)
 
     def new(self):
 
