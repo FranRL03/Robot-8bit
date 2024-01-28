@@ -3,6 +3,8 @@ import pygame.event
 from models.button import Button
 from models.enemy import Enemy
 from models.ground import Ground
+from models.items import Diamond
+from models.lake import Lake
 from models.wall import Wall
 from models.sprites import *
 from config import *
@@ -18,7 +20,12 @@ class Game:
 
         self.character_spritesheet = Spritesheet('assets/character.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
+        self.lake_spritsheet = Spritesheet('assets/terrain.png')
         self.enemy_sprintesheet = Spritesheet('assets/enemy.png')
+        self.bomb = Spritesheet('assets/bomb.png')
+        self.potion_sprintesheet = Spritesheet('assets/pocion.png')
+        self.wetsuit_sprintesheet = Spritesheet('assets/waterBottle.png')
+        self.diamond_sprintesheet = Spritesheet('assets/diamond.png')
         self.intro_background = pygame.image.load('assets/introbackground.png')
         self.go_background = pygame.image.load('assets/gameover.png')
 
@@ -43,6 +50,10 @@ class Game:
                     Enemy(self, j, i)
                 if column == "R":
                     Robot(self, j, i)
+                if column == "A":
+                    Lake(self, j, i)
+                if column == "D":
+                    Diamond(self, j, i)
 
     def new(self):
 
@@ -51,8 +62,13 @@ class Game:
 
         self.all_sprites = pygame.sprite.LayeredUpdates()
         self.walls = pygame.sprite.LayeredUpdates()
+        self.lake = pygame.sprite.LayeredUpdates()
         self.spikes = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
+        self.potion = pygame.sprite.LayeredUpdates()
+        self.wetsuit = pygame.sprite.LayeredUpdates()
+        self.bomb = pygame.sprite.LayeredUpdates()
+        self.diamond = pygame.sprite.LayeredUpdates()
 
         # se crea el mapa
         self.create_map()

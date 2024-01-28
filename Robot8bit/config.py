@@ -13,9 +13,11 @@ WIN_HEIGHT = 725
 TILESIZE = 32
 FPS = 60
 
-ROBOT_LAYER = 4
-ENEMY_LAYER = 3
-WALL_LAYER = 2
+ROBOT_LAYER = 6
+ENEMY_LAYER = 5
+WALL_LAYER = 4
+LAKE_LAYER = 3
+DIAMOND_LAYER = 2
 GROUND_LAYER = 1
 
 ROBOT_SPEED = 3
@@ -23,6 +25,7 @@ ENEMY_SPEED = 2
 
 # ROBOT_SKIN = pygame.image.load("./assets/single.png")
 ROBOT_SKIN = pygame.image.load(f"{BASE}/assets/single.png")
+DIAMOND_SKIN = pygame.image.load(f"{BASE}/assets/diamond.png")
 # ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
 
 
@@ -32,23 +35,23 @@ BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
 # TILEMAP
-map_design = [
-    'MMMMMMMMMMMMMMMMMMMM',
-    'M R                M',
-    'M    MMMMMMMMM     M',
-    'M    M             M',
-    'M    MMMMM         M',
-    'M    M             M',
-    'M                  M',
-    'M                  M',
-    'M               E  M',
-    'M            MM    M',
-    'M            MM    M',
-    'M   E        MM    M',
-    'M      MMMMMMMM    M',
-    'M                  M',
-    'MMMMMMMMMMMMMMMMMMMM',
-]
+# map_design = [
+#     'MMMMMMMMMMMMMMMMMMMM',
+#     'M R                M',
+#     'M    MMMMMMMMM     M',
+#     'M    M             M',
+#     'M    MMMMM         M',
+#     'M    M             M',
+#     'M                  M',
+#     'M                  M',
+#     'M               E  M',
+#     'M            MM    M',
+#     'M            MM    M',
+#     'M   E        MM    M',
+#     'M      MMMMMMMM    M',
+#     'M                  M',
+#     'MMMMMMMMMMMMMMMMMMMM',
+# ]
 
 # def cargar_mapa(nombre_archivo):
 #     with open(nombre_archivo, 'r') as archivo:
@@ -92,7 +95,7 @@ map_design = [
 # M                   E                 M
 # M                                     M
 # M                                     M
-# M                                     M
-# M                                     M
-# M                                     M
+# M          AAAAA                      M
+# M         AAAAAAAA                    M
+# M          AAAA                       M
 # MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
