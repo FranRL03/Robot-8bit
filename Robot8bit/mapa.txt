@@ -6,10 +6,10 @@ M       AAA                           M
 M     AAAAA                           M
 M                                     M
 M                                     M
-M    R          MMMMMMMMMMMMMMMMMMMMMMM
-M                      MM             M
-M                     MM     D        M
-M          MMMMMMMMMMMMMMMMMMMMMMMMMMMM
+M    R          SSSSSSSSSSSSSSSSSSSSSSM
+M                      SS             M
+M                    SSS     D        M
+M          SSSSSSSSSSSSSSSSSSSSSSSSSSSM
 M                                     M
 M        E                            M
 M                           T         M

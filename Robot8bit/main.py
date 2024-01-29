@@ -5,6 +5,7 @@ from models.enemy import Enemy
 from models.ground import Ground
 from models.items import Potion, Diamond, Wetsuit, Bomb
 from models.lake import Lake
+from models.spikes import Spikes
 from models.wall import Wall
 from models.sprites import *
 from config import *
@@ -22,6 +23,7 @@ class Game:
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
         self.lake_spritsheet = Spritesheet('assets/terrain.png')
         self.enemy_spritesheet = Spritesheet('assets/enemy.png')
+        self.spikes_spritesheet = Spritesheet('assets/terrain.png')
         self.bomb_spritesheet = Spritesheet('assets/bomb.png')
         self.potion_spritesheet = Spritesheet('assets/pocion.png')
         self.wetsuit_spritesheet = Spritesheet('assets/waterBottle.png')
@@ -60,6 +62,8 @@ class Game:
                     Wetsuit(self, j, i)
                 if column == "B":
                     Bomb(self, j, i)
+                if column == "S":
+                    Spikes(self, j, i)
 
     def new(self):
 
