@@ -21,7 +21,6 @@ ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
 # ROBOT_SKIN = pygame.image.load("./assets/single.png")
-ROBOT_SKIN = pygame.image.load(f"{BASE}/assets/single.png")
 # ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
 
 
