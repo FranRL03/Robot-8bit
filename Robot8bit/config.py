@@ -6,8 +6,6 @@ import pygame.image
 # WIN_WIDTH = screen_info.current_w
 # WIN_HEIGHT = screen_info.current_h
 
-BASE = "C:/Users/fjavi/Documents/2DAM/Robot-8bit/Robot8Bit"
-
 WIN_WIDTH = 1245
 WIN_HEIGHT = 725
 TILESIZE = 32

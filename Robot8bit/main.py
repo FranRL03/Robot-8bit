@@ -7,7 +7,7 @@ from models.items import Potion, Diamond, Wetsuit, Bomb
 from models.lake import Lake
 from models.spikes import Spikes
 from models.wall import Wall
-from models.sprites import *
+from models.robot import *
 from config import *
 import sys
 
@@ -33,14 +33,38 @@ class Game:
 
     mapa_a_cargar = 'mapa.txt'
 
-
     def cargar_mapa(mapa):
         with open('mapa.txt', 'r') as archivo:
+            primera_linea = archivo.readline().strip().split(', ')
+            diccionario = {item.split(':')[0]: int(item.split(':')[1]) for item in primera_linea}
             contenido = [linea.strip() for linea in archivo]
 
-        return contenido
+        return diccionario, contenido
 
-    mapa = cargar_mapa(mapa_a_cargar)
+    objetos, mapa = cargar_mapa(mapa_a_cargar)
+    print(objetos)
+
+    def imprimir_objetos(self):
+        for clave, valor in self.objetos.items():
+            for valoresRandom in range(valor):
+                x = random.randint(0, len(self.mapa[0]) - 1)
+                y = random.randint(0, len(self.mapa) - 1)
+
+                # comprobar la posicion que este vacia para colocar el objeto
+                while self.mapa[y][x] != ' ':
+                    # saca la longitud del mapa y le resta 1 para que no empieze a contar
+                    # desde el 0
+                    x = random.randint(0, len(self.mapa[0]) - 1)
+                    y = random.randint(0, len(self.mapa) - 1)
+
+                if clave == "P":
+                    Potion(self, x, y)
+                if clave == "D":
+                    Diamond(self, x, y)
+                if clave == "T":
+                    Wetsuit(self, x, y)
+                if clave == "B":
+                    Bomb(self, x, y)
 
     def create_map(self):
         for i, row in enumerate(self.mapa):
@@ -54,14 +78,6 @@ class Game:
                     Robot(self, j, i)
                 if column == "A":
                     Lake(self, j, i)
-                if column == "P":
-                    Potion(self, j, i)
-                if column == "D":
-                    Diamond(self, j, i)
-                if column == "T":
-                    Wetsuit(self, j, i)
-                if column == "B":
-                    Bomb(self, j, i)
                 if column == "S":
                     Spikes(self, j, i)
 
@@ -82,6 +98,7 @@ class Game:
 
         # se crea el mapa
         self.create_map()
+        self.imprimir_objetos()
 
     def events(self):
         # eventos del juego
@@ -96,6 +113,12 @@ class Game:
         # dibujar el mapa
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
+
+        for sprite in self.all_sprites:
+            if isinstance(sprite, Robot):
+                vida_text = self.font.render(f'Vida: {sprite.vida}', True, WHITE)
+                self.screen.blit(vida_text, (35,30))
+
         self.clock.tick(FPS)
         pygame.display.update()
     def main(self):
