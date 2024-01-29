@@ -3,8 +3,11 @@ import pygame.event
 from models.button import Button
 from models.enemy import Enemy
 from models.ground import Ground
+from models.items import Potion, Diamond, Wetsuit, Bomb
+from models.lake import Lake
+from models.spikes import Spikes
 from models.wall import Wall
-from models.sprites import *
+from models.robot import *
 from config import *
 import sys
 
@@ -18,12 +21,53 @@ class Game:
 
         self.character_spritesheet = Spritesheet('assets/character.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
-        self.enemy_sprintesheet = Spritesheet('assets/enemy.png')
+        self.lake_spritsheet = Spritesheet('assets/terrain.png')
+        self.enemy_spritesheet = Spritesheet('assets/enemy.png')
+        self.spikes_spritesheet = Spritesheet('assets/terrain.png')
+        self.bomb_spritesheet = Spritesheet('assets/bomb.png')
+        self.potion_spritesheet = Spritesheet('assets/pocion.png')
+        self.wetsuit_spritesheet = Spritesheet('assets/waterBottle.png')
+        self.diamond_spritesheet = Spritesheet('assets/diamond.png')
         self.intro_background = pygame.image.load('assets/introbackground.png')
         self.go_background = pygame.image.load('assets/gameover.png')
 
+    mapa_a_cargar = 'mapa.txt'
+
+    def cargar_mapa(mapa):
+        with open('mapa.txt', 'r') as archivo:
+            primera_linea = archivo.readline().strip().split(', ')
+            diccionario = {item.split(':')[0]: int(item.split(':')[1]) for item in primera_linea}
+            contenido = [linea.strip() for linea in archivo]
+
+        return diccionario, contenido
+
+    objetos, mapa = cargar_mapa(mapa_a_cargar)
+    print(objetos)
+
+    def imprimir_objetos(self):
+        for clave, valor in self.objetos.items():
+            for valoresRandom in range(valor):
+                x = random.randint(0, len(self.mapa[0]) - 1)
+                y = random.randint(0, len(self.mapa) - 1)
+
+                # comprobar la posicion que este vacia para colocar el objeto
+                while self.mapa[y][x] != ' ':
+                    # saca la longitud del mapa y le resta 1 para que no empieze a contar
+                    # desde el 0
+                    x = random.randint(0, len(self.mapa[0]) - 1)
+                    y = random.randint(0, len(self.mapa) - 1)
+
+                if clave == "P":
+                    Potion(self, x, y)
+                if clave == "D":
+                    Diamond(self, x, y)
+                if clave == "T":
+                    Wetsuit(self, x, y)
+                if clave == "B":
+                    Bomb(self, x, y)
+
     def create_map(self):
-        for i, row in enumerate(map_design):
+        for i, row in enumerate(self.mapa):
             for j, column in enumerate(row):
                 Ground(self, j, i)
                 if column == "M":
@@ -32,20 +76,10 @@ class Game:
                     Enemy(self, j, i)
                 if column == "R":
                     Robot(self, j, i)
-
-    # def create_map(self):
-    #     tile_width = WIN_WIDTH // len(map_design[0])
-    #     tile_height = WIN_HEIGHT // len(map_design)
-    #
-    #     for i, row in enumerate(map_design):
-    #         for j, column in enumerate(row):
-    #             Ground(self, j * tile_width, i * tile_height)
-    #             if column == "M":
-    #                 Wall(self, j * tile_width, i * tile_height)
-    #             if column == "E":
-    #                 Enemy(self, j * tile_width, i * tile_height)
-    #             if column == "R":
-    #                 Robot(self, j * tile_width, i * tile_height)
+                if column == "A":
+                    Lake(self, j, i)
+                if column == "S":
+                    Spikes(self, j, i)
 
     def new(self):
 
@@ -54,11 +88,17 @@ class Game:
 
         self.all_sprites = pygame.sprite.LayeredUpdates()
         self.walls = pygame.sprite.LayeredUpdates()
+        self.lake = pygame.sprite.LayeredUpdates()
         self.spikes = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
+        self.potion = pygame.sprite.LayeredUpdates()
+        self.wetsuit = pygame.sprite.LayeredUpdates()
+        self.bomb = pygame.sprite.LayeredUpdates()
+        self.diamond = pygame.sprite.LayeredUpdates()
 
         # se crea el mapa
         self.create_map()
+        self.imprimir_objetos()
 
     def events(self):
         # eventos del juego
@@ -73,6 +113,12 @@ class Game:
         # dibujar el mapa
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
+
+        for sprite in self.all_sprites:
+            if isinstance(sprite, Robot):
+                vida_text = self.font.render(f'Vida: {sprite.vida}', True, WHITE)
+                self.screen.blit(vida_text, (35,30))
+
         self.clock.tick(FPS)
         pygame.display.update()
     def main(self):
@@ -113,9 +159,9 @@ class Game:
         intro = True
 
         title = self.font.render('ROBOT 8-BITS', True, BLACK)
-        title_rect = title.get_rect(x=200, y=160)
+        title_rect = title.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2 - 30))
 
-        play_button = Button(250, 220, 100, 50, WHITE, BLACK, 'Jugar', 32)
+        play_button = Button(WIN_WIDTH/2 - 50, WIN_HEIGHT/2, 100, 50, WHITE, BLACK, 'Jugar', 32)
 
         while intro:
             for event in pygame.event.get():
