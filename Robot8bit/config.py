@@ -1,20 +1,34 @@
 import pygame.image
 
+# pygame.init()
+# info = pygame.display.Info()
+# WIN_WIDTH = info.current_w
+# WIN_HEIGHT = info.current_h
+
+BASE = "C:/Users/fjavi/Documents/2DAM/Robot-8bit/Robot8Bit"
+
 WIN_WIDTH = 640
 WIN_HEIGHT = 480
 TILESIZE = 32
 FPS = 60
 
-ROBOT_LAYER = 2
-WALL_LAYER = 1
+ROBOT_LAYER = 4
+ENEMY_LAYER = 3
+WALL_LAYER = 2
+GROUND_LAYER = 1
 
 ROBOT_SPEED = 3
+ENEMY_SPEED = 2
 
-ROBOT_SKIN = pygame.image.load("assets/single.png")
+# ROBOT_SKIN = pygame.image.load("./assets/single.png")
+ROBOT_SKIN = pygame.image.load(f"{BASE}/assets/single.png")
+# ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
+
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
 
 # TILEMAP
 map_design = [
@@ -24,12 +38,12 @@ map_design = [
     'M    M             M',
     'M    MMMMM         M',
     'M    M             M',
-    'M    M             M',
     'M                  M',
-    'M     MMMMMMMMMM   M',
+    'M                  M',
+    'M               E  M',
     'M            MM    M',
     'M            MM    M',
-    'M            MM    M',
+    'M   E        MM    M',
     'M      MMMMMMMM    M',
     'M                  M',
     'MMMMMMMMMMMMMMMMMMMM',
