@@ -7,7 +7,7 @@ class Diamond (pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
         self.game = game
-        self._layer = DIAMOND_LAYER
+        self._layer = ITEM_LAYER
         self.groups = self.game.all_sprites, self.game.diamond
         pygame.sprite.Sprite.__init__(self, self.groups)
 
@@ -31,7 +31,7 @@ class Potion (pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
         self.game = game
-        self._layer = POTION_LAYER
+        self._layer = ITEM_LAYER
         self.groups = self.game.all_sprites, self.game.potion
         pygame.sprite.Sprite.__init__(self, self.groups)
 
@@ -55,7 +55,7 @@ class Wetsuit (pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
         self.game = game
-        self._layer = WETSUIT_LAYER
+        self._layer = ITEM_LAYER
         self.groups = self.game.all_sprites, self.game.wetsuit
         pygame.sprite.Sprite.__init__(self, self.groups)
 
@@ -78,7 +78,7 @@ class Bomb (pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
         self.game = game
-        self._layer = BOMB_LAYER
+        self._layer = ITEM_LAYER
         self.groups = self.game.all_sprites, self.game.bomb
         pygame.sprite.Sprite.__init__(self, self.groups)
 

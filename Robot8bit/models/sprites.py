@@ -93,6 +93,27 @@ class Robot(pygame.sprite.Sprite):
                 if self.y_change < 0:
                     self.rect.y = hits[0].rect.bottom
 
+    def collide_spikes(self, direccion):
+        # if direccion == "x":
+        #     hits = pygame.sprite.spritecollide(self, self.game.spikes, False)
+        #     if hits:
+        #         if self.x_change > 0:
+        #              self.rect.x = hits[0].rect.left - self.rect.width
+        #         if self.x_change < 0:
+        #             self.rect.x = hits[0].rect.right
+        #
+        # if direccion == "y":
+        #     hits = pygame.sprite.spritecollide(self, self.game.spikes, False)
+        #     if hits:
+        #         if self.y_change > 0:
+        #             self.rect.y = hits[0].rect.top - self.rect.height
+        #         if self.y_change < 0:
+        #             self.rect.y = hits[0].rect.bottom
+        hits = pygame.sprite.spritecollide(self, self.game.enemies, False)
+        if hits:
+            self.kill()
+            self.game.playing = False
+
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(35, 2, self.width, self.height),
