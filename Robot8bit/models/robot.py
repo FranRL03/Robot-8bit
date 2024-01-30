@@ -19,6 +19,7 @@ class Robot(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
         self.game = game
         self.vida = 10
+        self.water_shit = False
         self._layer = ROBOT_LAYER
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -49,6 +50,7 @@ class Robot(pygame.sprite.Sprite):
         self.animate()
         self.collide_enemy()
         self.collide_lake()
+        self.water_shirt()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -135,6 +137,15 @@ class Robot(pygame.sprite.Sprite):
         if self.vida == 0:
             self.kill()
             self.game.playing = False
+
+
+    def water_shirt(self):
+        hits = pygame.sprite.spritecollide(self, self.game.wetsuit, True)
+        if hits:
+            self.water_shit = True
+            self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
+            print("Traje cogido")
+
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(35, 2, self.width, self.height),

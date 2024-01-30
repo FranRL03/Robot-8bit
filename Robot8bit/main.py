@@ -20,6 +20,7 @@ class Game:
         self.font = pygame.font.Font('fonts/upheavtt.ttf', 32)
 
         self.character_spritesheet = Spritesheet('assets/character.png')
+        self.character_wetsuit_spritesheet = Spritesheet('assets/characterWithWetsuit.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
         self.lake_spritsheet = Spritesheet('assets/terrain.png')
         self.enemy_spritesheet = Spritesheet('assets/enemy.png')
