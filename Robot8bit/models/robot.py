@@ -48,6 +48,7 @@ class Robot(pygame.sprite.Sprite):
         self.movement()
         self.animate()
         self.collide_enemy()
+        self.collide_lake()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -79,6 +80,17 @@ class Robot(pygame.sprite.Sprite):
         if hits:
             self.kill()
             self.game.playing = False
+
+    def collide_lake(self):
+        hits = pygame.sprite.spritecollide(self, self.game.lake, False)
+        if hits:
+            time.sleep(0.1)
+            self.vida -= 3
+
+            if self.vida <= 0:
+                self.kill()
+                self.game.playing = False
+
 
     def collide_walls(self, direccion):
         if direccion == "x":

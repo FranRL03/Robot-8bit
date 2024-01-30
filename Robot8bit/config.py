@@ -12,8 +12,8 @@ TILESIZE = 32
 FPS = 60
 
 ROBOT_LAYER = 6
-ITEM_LAYER = 5
-ENEMY_LAYER = 4
+ENEMY_LAYER = 5
+ITEM_LAYER = 4
 WALL_LAYER = 3
 LAKE_LAYER = 2
 GROUND_LAYER = 1
@@ -21,14 +21,9 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-<<<<<<< HEAD
-# ROBOT_SKIN = pygame.image.load("./assets/single.png")
-=======
 DIAMOND_SKIN = pygame.image.load("./assets/diamond.png")
 POTION_SKIN = pygame.image.load("./assets/pocion.png")
 BOMB_SKIN = pygame.image.load("./assets/bomb.png")
->>>>>>> prueba_mapa
-# ROBOT_SKIN = pygame.transform.scale(pygame.image.load("./assets/single.png"), (TILESIZE, TILESIZE))
 
 
 RED = (250, 0, 0)
