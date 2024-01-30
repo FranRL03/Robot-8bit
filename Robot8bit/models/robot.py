@@ -19,7 +19,8 @@ class Robot(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
         self.game = game
         self.vida = 10
-        self.water_shit = False
+        self.water_shirt = False
+        self.wetsuit_inventory = False
         self._layer = ROBOT_LAYER
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -47,15 +48,16 @@ class Robot(pygame.sprite.Sprite):
 
     def update(self):
         self.movement()
-        if self.water_shit == True:
+        if self.water_shirt == True:
             self.animateWetsuit()
         else:
             self.animate()
 
         self.collide_enemy()
         self.collide_lake()
-        self.water_shirt()
+        self.water_shirt_collide()
         self.desvestir_vestir()
+        self.potion_collide()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -89,7 +91,7 @@ class Robot(pygame.sprite.Sprite):
             self.game.playing = False
 
     def collide_lake(self):
-        if self.water_shit == True:
+        if self.water_shirt == True:
             return
 
         hits = pygame.sprite.spritecollide(self, self.game.lake, False)
@@ -147,13 +149,20 @@ class Robot(pygame.sprite.Sprite):
             self.game.playing = False
 
 
-    def water_shirt(self):
+    def water_shirt_collide(self):
         hits = pygame.sprite.spritecollide(self, self.game.wetsuit, True)
         if hits:
-            self.water_shit = True
-            self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
+            self.water_shirt = True
+            self.wetsuit_inventory = True
             print("Traje cogido")
             print("Traje cambiado")
+
+    def potion_collide(self):
+        hits = pygame.sprite.spritecollide(self, self.game.potion, True)
+        if hits:
+            cantidad = random.randint(1, 5)
+            self.vida = min(10, self.vida + cantidad)
+
 
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
@@ -261,13 +270,27 @@ class Robot(pygame.sprite.Sprite):
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
 
+
+    # def desvestir_vestir(self):
+    #     keys = pygame.key.get_pressed()
+    #
+    #     if keys[pygame.K_t]:
+    #         if self.wetsuit_inventory == True and self.water_shirt == False:
+    #             self.water_shirt = True
+    #             print("Traje equipado")
+    #         elif self.water_shirt == True:
+    #             self.water_shirt = False
+    #             print("Traje quitado")
+
     def desvestir_vestir(self):
-        keys = pygame.key.get_pressed()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_t:
+                    if self.wetsuit_inventory == True and self.water_shirt == False:
+                        self.water_shirt = True
+                        print("Traje equipado")
+                    elif self.water_shirt == True:
+                        self.water_shirt = False
+                        print("Traje quitado")
 
-        if keys[pygame.K_t] and self.water_shit == True:
-            self.water_shit = False
-
-        # tengo que crear otra variable que sea tener el traje de agua en el inventario
-        # porque la variable que tengo actual es llevar el traje puesto entonces para poder
-        # quitarme y ponerme el traje primero tengo que comprobar que la variable de traje en
-        # inventario sea True
+    # con esta funcion tengo que presionar muchas veces la tecla
