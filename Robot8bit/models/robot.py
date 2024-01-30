@@ -47,10 +47,15 @@ class Robot(pygame.sprite.Sprite):
 
     def update(self):
         self.movement()
-        self.animate()
+        if self.water_shit == True:
+            self.animateWetsuit()
+        else:
+            self.animate()
+
         self.collide_enemy()
         self.collide_lake()
         self.water_shirt()
+        self.desvestir_vestir()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -84,6 +89,9 @@ class Robot(pygame.sprite.Sprite):
             self.game.playing = False
 
     def collide_lake(self):
+        if self.water_shit == True:
+            return
+
         hits = pygame.sprite.spritecollide(self, self.game.lake, False)
         if hits:
             time.sleep(0.1)
@@ -145,6 +153,7 @@ class Robot(pygame.sprite.Sprite):
             self.water_shit = True
             self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
             print("Traje cogido")
+            print("Traje cambiado")
 
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
@@ -199,4 +208,66 @@ class Robot(pygame.sprite.Sprite):
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
 
+    def animateWetsuit(self):
+        down_animations = [self.game.character_wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height),
+                           self.game.character_wetsuit_spritesheet.get_sprite(35, 2, self.width, self.height),
+                           self.game.character_wetsuit_spritesheet.get_sprite(68, 2, self.width, self.height)]
 
+        up_animations = [self.game.character_wetsuit_spritesheet.get_sprite(3, 34, self.width, self.height),
+                         self.game.character_wetsuit_spritesheet.get_sprite(35, 34, self.width, self.height),
+                         self.game.character_wetsuit_spritesheet.get_sprite(68, 34, self.width, self.height)]
+
+        left_animations = [self.game.character_wetsuit_spritesheet.get_sprite(3, 98, self.width, self.height),
+                           self.game.character_wetsuit_spritesheet.get_sprite(35, 98, self.width, self.height),
+                           self.game.character_wetsuit_spritesheet.get_sprite(68, 98, self.width, self.height)]
+
+        right_animations = [self.game.character_wetsuit_spritesheet.get_sprite(3, 66, self.width, self.height),
+                            self.game.character_wetsuit_spritesheet.get_sprite(35, 66, self.width, self.height),
+                            self.game.character_wetsuit_spritesheet.get_sprite(68, 66, self.width, self.height)]
+
+        if self.facing == "down":
+            if self.y_change == 0:
+                self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
+            else:
+                self.image = down_animations[math.floor(self.animation_loop)]
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+
+        if self.facing == "up":
+            if self.y_change == 0:
+                self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 34, self.width, self.height)
+            else:
+                self.image = up_animations[math.floor(self.animation_loop)]
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+
+        if self.facing == "left":
+            if self.x_change == 0:
+                self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 98, self.width, self.height)
+            else:
+                self.image = left_animations[math.floor(self.animation_loop)]
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+
+        if self.facing == "right":
+            if self.x_change == 0:
+                self.image = self.game.character_wetsuit_spritesheet.get_sprite(3, 66, self.width, self.height)
+            else:
+                self.image = right_animations[math.floor(self.animation_loop)]
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+
+    def desvestir_vestir(self):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_t] and self.water_shit == True:
+            self.water_shit = False
+
+        # tengo que crear otra variable que sea tener el traje de agua en el inventario
+        # porque la variable que tengo actual es llevar el traje puesto entonces para poder
+        # quitarme y ponerme el traje primero tengo que comprobar que la variable de traje en
+        # inventario sea True
