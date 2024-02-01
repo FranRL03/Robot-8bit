@@ -107,9 +107,17 @@ class Game:
             if event.type == pygame.QUIT:
                 self.playing = False
                 self.running = False
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_q] or keys[pygame.K_ESCAPE]:
+                # self.playing = False
+                # self.running = False
+                self.leave()
+
     def update(self):
         # actualizar el juego
         self.all_sprites.update()
+
     def draw(self):
         # dibujar el mapa
         self.screen.fill(BLACK)
@@ -182,12 +190,30 @@ class Game:
             self.clock.tick(FPS)
             pygame.display.update()
 
-g = Game()
-g.intro_screen()
-g.new()
-while g.running:
-    g.main()
-    g.game_over()
+    def leave(self):
+        text = self.font.render('¿Quieres salir?', True, WHITE)
+        text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2))
 
-pygame.quit()
-sys.exit()
+        si_button = Button(10, WIN_HEIGHT - 60, 130, 50, WHITE, BLACK, 'Salir', 32)
+        no_button = Button(330, WIN_HEIGHT - 60, 170, 50, WHITE, BLACK, 'Cancelar', 32)
+
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+
+            mouse_pos = pygame.mouse.get_pos()
+            mouse_pressed = pygame.mouse.get_pressed()
+
+            if si_button.is_pressed(mouse_pos, mouse_pressed):
+                self.playing = False
+                self.running = False
+            elif no_button.is_pressed(mouse_pos, mouse_pressed):
+                return
+
+            self.screen.blit(self.go_background, (0, 0))
+            self.screen.blit(text, text_rect)
+            self.screen.blit(si_button.image, si_button.rect)
+            self.screen.blit(no_button.image, no_button.rect)
+            self.clock.tick(FPS)
+            pygame.display.update()

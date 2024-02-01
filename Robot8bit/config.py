@@ -21,9 +21,9 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-DIAMOND_SKIN = pygame.image.load("./assets/diamond.png")
-POTION_SKIN = pygame.image.load("./assets/pocion.png")
-BOMB_SKIN = pygame.image.load("./assets/bomb.png")
+DIAMOND_SKIN = pygame.image.load("assets/diamond.png")
+POTION_SKIN = pygame.image.load("assets/pocion.png")
+BOMB_SKIN = pygame.image.load("assets/bomb.png")
 
 
 RED = (250, 0, 0)

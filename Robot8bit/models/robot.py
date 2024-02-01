@@ -158,11 +158,11 @@ class Robot(pygame.sprite.Sprite):
             print("Traje cambiado")
 
     def potion_collide(self):
-        hits = pygame.sprite.spritecollide(self, self.game.potion, True)
-        if hits:
-            cantidad = random.randint(1, 5)
-            self.vida = min(10, self.vida + cantidad)
-
+        if self.vida < 10:
+            hits = pygame.sprite.spritecollide(self, self.game.potion, True)
+            if hits:
+                cantidad = random.randint(1, 5)
+                self.vida = min(10, self.vida + cantidad)
 
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
@@ -270,45 +270,10 @@ class Robot(pygame.sprite.Sprite):
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
 
-
-    # def desvestir_vestir(self):
-    #     keys = pygame.key.get_pressed()
-    #
-    #     if keys[pygame.K_t]:
-    #         if self.wetsuit_inventory == True and self.water_shirt == False:
-    #             self.water_shirt = True
-    #             print("Traje equipado")
-    #         elif self.water_shirt == True:
-    #             self.water_shirt = False
-    #             print("Traje quitado")
-
-    # def desvestir_vestir(self):
-    #     keys = pygame.key.get_pressed()
-    #
-    #     if keys[pygame.K_t] and self.wetsuit_inventory == True and self.t_pressed == False:
-    #         self.water_shirt = False
-    #         self.t_pressed = True
-    #     elif not keys[pygame.K_t]:
-    #         self.t_pressed = True
-
     def desvestir_vestir(self):
         keys = pygame.key.get_pressed()
-        # Si se pulsa la T y no se ha pulsado antes y el jugador tiene las gafas:
         if keys[pygame.K_t] and not self.t_pressed and self.wetsuit_inventory:
-            self.water_shirt = not self.water_shirt  # Si está true se vuelve false y viceversa
+            self.water_shirt = not self.water_shirt
             self.t_pressed = True
         elif not keys[pygame.K_t]:
             self.t_pressed = False
-
-    # def desvestir_vestir(self):
-    #     for event in pygame.event.get():
-    #         if event.type == pygame.KEYDOWN:
-    #             if event.key == pygame.K_t:
-    #                 if self.wetsuit_inventory == True and self.water_shirt == False:
-    #                     self.water_shirt = True
-    #                     print("Traje equipado")
-    #                 elif self.water_shirt == True:
-    #                     self.water_shirt = False
-    #                     print("Traje quitado")
-
-    # con esta funcion tengo que presionar muchas veces la tecla
