@@ -2,7 +2,7 @@ B:1, D:1, T:1, P:1
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 M                                     M
 M     A                               M
-M     AAAAAA                          M
+M     AAAAAA             E            M
 M       AAA                           M
 M     AAAAA                           M
 M                                     M
@@ -12,11 +12,11 @@ M                      SS             M
 M                    SSS              M
 M          SSSSSSSSSSSSSSSSSSSSSSSSSSSM
 M                                     M
-M        E                            M
+M         E                           M
 M                                     M
 M                                     M
-M                   E                 M
 M                                     M
+M                          E          M
 M                                     M
 M          AAAAA                      M
 M         AAAAAAAA                    M

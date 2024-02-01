@@ -67,7 +67,7 @@ class Wetsuit (pygame.sprite.Sprite):
         self.x_change = 0
         self.y_change = 0
 
-        self.image = self.game.wetsuit_spritesheet.get_sprite(2, 2, self.width, self.height)
+        self.image = self.game.wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x

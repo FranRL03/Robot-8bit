@@ -6,8 +6,8 @@ import pygame.image
 # WIN_WIDTH = screen_info.current_w
 # WIN_HEIGHT = screen_info.current_h
 
-WIN_WIDTH = 1245
-WIN_HEIGHT = 725
+WIN_WIDTH = 1375
+WIN_HEIGHT = 735
 TILESIZE = 32
 FPS = 60
 
@@ -21,6 +21,8 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
+WETSUIT = pygame.image.load("assets/traje.png")
+ROBOT_SKIN = pygame.image.load("assets/single.png")
 DIAMOND_SKIN = pygame.image.load("assets/diamond.png")
 POTION_SKIN = pygame.image.load("assets/pocion.png")
 BOMB_SKIN = pygame.image.load("assets/bomb.png")

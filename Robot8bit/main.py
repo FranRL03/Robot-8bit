@@ -19,8 +19,8 @@ class Game:
         self.running = True
         self.font = pygame.font.Font('fonts/upheavtt.ttf', 32)
 
-        self.character_spritesheet = Spritesheet('assets/character.png')
-        self.character_wetsuit_spritesheet = Spritesheet('assets/characterWithWetsuit.png')
+        self.character_spritesheet = Spritesheet('assets/character2.png')
+        self.character_wetsuit_spritesheet = Spritesheet('assets/characterWithWetsuit2.png')
         self.terrain_spritesheet = Spritesheet('assets/terrain.png')
         self.lake_spritsheet = Spritesheet('assets/terrain.png')
         self.enemy_spritesheet = Spritesheet('assets/enemy.png')
@@ -125,8 +125,13 @@ class Game:
 
         for sprite in self.all_sprites:
             if isinstance(sprite, Robot):
-                vida_text = self.font.render(f'Vida: {sprite.vida}', True, WHITE)
-                self.screen.blit(vida_text, (35,30))
+                vida_text = self.font.render(f'x {sprite.vida}', True, WHITE)
+                self.screen.blit(vida_text, (1300,40))
+                self.screen.blit(ROBOT_SKIN, (1260, 40))
+
+                wetsuit_text = self.font.render(f'x {sprite.wetsuit_inventory}', True, WHITE)
+                self.screen.blit(wetsuit_text, (1300, 80))
+                self.screen.blit(WETSUIT, (1260, 80))
 
         self.clock.tick(FPS)
         pygame.display.update()
@@ -142,6 +147,7 @@ class Game:
         text_rect = text.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))
 
         restart_button = Button(10, WIN_HEIGHT - 60, 150, 50, WHITE, BLACK, 'Restart', 32)
+        go_background = pygame.transform.scale(self.go_background, (WIN_WIDTH, WIN_HEIGHT))
 
         for sprite in self.all_sprites:
             sprite.kill()
@@ -158,7 +164,7 @@ class Game:
                 self.new()
                 self.main()
 
-            self.screen.blit(self.go_background, (0,0))
+            self.screen.blit(go_background, (0,0))
             self.screen.blit(text, text_rect)
             self.screen.blit(restart_button.image, restart_button.rect)
             self.clock.tick(FPS)
@@ -172,6 +178,8 @@ class Game:
 
         play_button = Button(WIN_WIDTH/2 - 50, WIN_HEIGHT/2, 100, 50, WHITE, BLACK, 'Jugar', 32)
 
+        intro_background = pygame.transform.scale(self.intro_background, (WIN_WIDTH, WIN_HEIGHT))
+
         while intro:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -184,7 +192,7 @@ class Game:
             if play_button.is_pressed(mouse_pos, mouse_pressed):
                 intro = False
 
-            self.screen.blit(self.intro_background, (0,0))
+            self.screen.blit(intro_background, (0,0))
             self.screen.blit(title, title_rect)
             self.screen.blit(play_button.image, play_button.rect)
             self.clock.tick(FPS)
@@ -196,6 +204,8 @@ class Game:
 
         si_button = Button(10, WIN_HEIGHT - 60, 130, 50, WHITE, BLACK, 'Salir', 32)
         no_button = Button(330, WIN_HEIGHT - 60, 170, 50, WHITE, BLACK, 'Cancelar', 32)
+
+        leave_background = pygame.transform.scale(self.go_background, (WIN_WIDTH, WIN_HEIGHT))
 
         while self.running:
             for event in pygame.event.get():
@@ -211,7 +221,7 @@ class Game:
             elif no_button.is_pressed(mouse_pos, mouse_pressed):
                 return
 
-            self.screen.blit(self.go_background, (0, 0))
+            self.screen.blit(leave_background, (0, 0))
             self.screen.blit(text, text_rect)
             self.screen.blit(si_button.image, si_button.rect)
             self.screen.blit(no_button.image, no_button.rect)
