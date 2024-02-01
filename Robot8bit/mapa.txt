@@ -1,24 +1,24 @@
-B:7, D:6, T:1, P:3
+B:1, D:1, T:1, P:1
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 M                                     M
 M     A                               M
-M     AAAAAA            B             M
+M     AAAAAA                          M
 M       AAA                           M
 M     AAAAA                           M
 M                                     M
 M                                     M
 M    R          SSSSSSSSSSSSSSSSSSSSSSM
 M                      SS             M
-M                    SSS     D        M
+M                    SSS              M
 M          SSSSSSSSSSSSSSSSSSSSSSSSSSSM
 M                                     M
 M        E                            M
-M                           T         M
+M                                     M
 M                                     M
 M                   E                 M
 M                                     M
 M                                     M
 M          AAAAA                      M
-M         AAAAAAAA          P         M
+M         AAAAAAAA                    M
 M          AAAA                       M
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
