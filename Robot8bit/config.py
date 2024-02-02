@@ -21,7 +21,7 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-WETSUIT = pygame.image.load("assets/traje.png")
+WETSUIT = pygame.image.load("assets/Sin nombre.png")
 ROBOT_SKIN = pygame.image.load("assets/single.png")
 DIAMOND_SKIN = pygame.image.load("assets/diamond.png")
 POTION_SKIN = pygame.image.load("assets/pocion.png")

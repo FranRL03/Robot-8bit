@@ -130,8 +130,8 @@ class Game:
                 self.screen.blit(ROBOT_SKIN, (1260, 40))
 
                 wetsuit_text = self.font.render(f'x {sprite.wetsuit_inventory}', True, WHITE)
-                self.screen.blit(wetsuit_text, (1300, 80))
                 self.screen.blit(WETSUIT, (1260, 80))
+                self.screen.blit(wetsuit_text, (1300, 80))
 
         self.clock.tick(FPS)
         pygame.display.update()
