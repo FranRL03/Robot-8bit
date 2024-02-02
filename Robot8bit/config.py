@@ -21,17 +21,27 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-WETSUIT = pygame.image.load("assets/Sin nombre.png")
+# WETSUIT = pygame.image.load("assets/Sin nombre.png")
 ROBOT_SKIN = pygame.image.load("assets/single.png")
 DIAMOND_SKIN = pygame.image.load("assets/diamond.png")
 POTION_SKIN = pygame.image.load("assets/pocion.png")
 BOMB_SKIN = pygame.image.load("assets/bomb.png")
+HEART_SKIN = pygame.image.load("assets/heart.png")
 
+diamond_tamano = (40, 40)
+bomb_tamano = (35, 35)
+heart_tamano = (40, 40)
+
+HEART = pygame.transform.scale(HEART_SKIN, heart_tamano)
+DIAMOND = pygame.transform.scale(DIAMOND_SKIN, diamond_tamano)
+BOMB = pygame.transform.scale(BOMB_SKIN, bomb_tamano)
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
+
+mapa_a_cargar = 'mapa.txt'
 
 # TILEMAP
 # map_design = [

@@ -32,10 +32,8 @@ class Game:
         self.intro_background = pygame.image.load('assets/introbackground.png')
         self.go_background = pygame.image.load('assets/gameover.png')
 
-    mapa_a_cargar = 'mapa.txt'
-
     def cargar_mapa(mapa):
-        with open('mapa.txt', 'r') as archivo:
+        with open(mapa, 'r') as archivo:
             primera_linea = archivo.readline().strip().split(', ')
             diccionario = {item.split(':')[0]: int(item.split(':')[1]) for item in primera_linea}
             contenido = [linea.strip() for linea in archivo]
@@ -127,11 +125,20 @@ class Game:
             if isinstance(sprite, Robot):
                 vida_text = self.font.render(f'x {sprite.vida}', True, WHITE)
                 self.screen.blit(vida_text, (1300,40))
-                self.screen.blit(ROBOT_SKIN, (1260, 40))
+                self.screen.blit(HEART, (1250, 35))
 
-                wetsuit_text = self.font.render(f'x {sprite.wetsuit_inventory}', True, WHITE)
-                self.screen.blit(WETSUIT, (1260, 80))
-                self.screen.blit(wetsuit_text, (1300, 80))
+                diamond_text = self.font.render(f'x {sprite._diamond_inventory}', True, WHITE)
+                self.screen.blit(DIAMOND, (1250, 100))
+                self.screen.blit(diamond_text, (1300, 110))
+
+                bomb_text = self.font.render(f'x {sprite._bomb_inventory}', True, WHITE)
+                self.screen.blit(BOMB, (1250, 170))
+                self.screen.blit(bomb_text, (1300, 180))
+
+                if sprite.water_shirt == True:
+                    traje = self.font.render('Traje puesto', True, WHITE)
+                    self.screen.blit(traje, (1240, 240))
+                    # self.screen.blit(ROBOT_SKIN, (1250, 200))
 
         self.clock.tick(FPS)
         pygame.display.update()

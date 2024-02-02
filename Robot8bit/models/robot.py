@@ -21,6 +21,8 @@ class Robot(pygame.sprite.Sprite):
         self.vida = 10
         self.water_shirt = False
         self.wetsuit_inventory = False
+        self._diamond_inventory = 0
+        self._bomb_inventory = 0
         self._layer = ROBOT_LAYER
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -58,6 +60,8 @@ class Robot(pygame.sprite.Sprite):
         self.water_shirt_collide()
         self.desvestir_vestir()
         self.potion_collide()
+        self.collide_diamond()
+        self.collide_bomb()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -103,7 +107,6 @@ class Robot(pygame.sprite.Sprite):
                 self.kill()
                 self.game.playing = False
 
-
     def collide_walls(self, direccion):
         if direccion == "x":
             hits = pygame.sprite.spritecollide(self, self.game.walls, False)
@@ -148,7 +151,6 @@ class Robot(pygame.sprite.Sprite):
             self.kill()
             self.game.playing = False
 
-
     def water_shirt_collide(self):
         hits = pygame.sprite.spritecollide(self, self.game.wetsuit, True)
         if hits:
@@ -163,6 +165,17 @@ class Robot(pygame.sprite.Sprite):
             if hits:
                 cantidad = random.randint(1, 5)
                 self.vida = min(10, self.vida + cantidad)
+
+    def collide_diamond(self):
+        hits = pygame.sprite.spritecollide(self, self.game.diamond, True)
+        if hits:
+            self._diamond_inventory += 1
+            print(self._diamond_inventory)
+
+    def collide_bomb(self):
+        hits = pygame.sprite.spritecollide(self, self.game.bomb, True)
+        if hits:
+            self._bomb_inventory += 1
 
     def animate(self):
         down_animations = [self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height),
