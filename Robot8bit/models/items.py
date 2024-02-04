@@ -3,6 +3,10 @@ from config import *
 import math
 import random
 
+
+class Item():
+    pass
+
 class Diamond (pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
