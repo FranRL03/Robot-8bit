@@ -4,6 +4,9 @@ import math
 import time
 import random
 
+from models.items import Bomb
+
+
 class Spritesheet:
     def __init__(self, file):
         self.sheet = pygame.image.load(file).convert()
@@ -62,6 +65,7 @@ class Robot(pygame.sprite.Sprite):
         self.potion_collide()
         self.collide_diamond()
         self.collide_bomb()
+        self.launch_bomb()
 
         self.rect.x += self.x_change
         self.collide_walls('x')
@@ -290,3 +294,15 @@ class Robot(pygame.sprite.Sprite):
             self.t_pressed = True
         elif not keys[pygame.K_t]:
             self.t_pressed = False
+
+    def launch_bomb(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_b] and not self.b_pressed and self._bomb_inventory >= 1:
+            bomb = Bomb(self.game, self.rect.x, self.rect.y)
+            bomb.collide_with_item()
+            self.b_pressed = True
+            self._bomb_inventory -= 1
+            print("Bomba lanzada")
+            print("Bombas restantes:", self._bomb_inventory)
+        elif not keys[pygame.K_b]:
+            self.b_pressed = False
