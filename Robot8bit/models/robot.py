@@ -111,6 +111,7 @@ class Robot(pygame.sprite.Sprite):
                 self.kill()
                 self.game.playing = False
 
+
     def collide_walls(self, direccion):
         if direccion == "x":
             hits = pygame.sprite.spritecollide(self, self.game.walls, False)
@@ -169,12 +170,14 @@ class Robot(pygame.sprite.Sprite):
             if hits:
                 cantidad = random.randint(1, 5)
                 self.vida = min(10, self.vida + cantidad)
+                MUSHROOM_SOUND.play()
 
     def collide_diamond(self):
         hits = pygame.sprite.spritecollide(self, self.game.diamond, True)
         if hits:
             self._diamond_inventory += 1
             print(self._diamond_inventory)
+            COIN_SOUND.play()
 
     def collide_bomb(self):
         hits = pygame.sprite.spritecollide(self, self.game.bomb, True)

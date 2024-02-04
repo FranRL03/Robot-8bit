@@ -1,5 +1,6 @@
 import pygame.image
 
+pygame.mixer.init()
 # pygame.init()
 #
 # screen_info = pygame.display.Info()
@@ -28,6 +29,10 @@ POTION_SKIN = pygame.image.load("assets/pocion.png")
 BOMB_SKIN = pygame.image.load("assets/bomb.png")
 HEART_SKIN = pygame.image.load("assets/heart.png")
 SINGLE_WETSUIT = pygame.image.load("assets/singleWetSuit.png")
+
+
+COIN_SOUND = pygame.mixer.Sound("sounds/coinSound.mp3")
+MUSHROOM_SOUND = pygame.mixer.Sound("sounds/mushroom.mp3")
 
 diamond_tamano = (40, 40)
 bomb_tamano = (35, 35)
