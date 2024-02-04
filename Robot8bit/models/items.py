@@ -18,7 +18,6 @@ class Diamond (pygame.sprite.Sprite):
 
         image_to_load = pygame.transform.scale(DIAMOND_SKIN, (self.width, self.height))
 
-        # image_to_load = DIAMOND_SKIN
         self.image = pygame.Surface([self.width, self.height])
         self.image.set_colorkey(BLACK)
         self.image.blit(image_to_load, (0,0))
@@ -42,7 +41,6 @@ class Potion (pygame.sprite.Sprite):
 
         image_to_load = pygame.transform.scale(POTION_SKIN, (self.width, self.height))
 
-        # image_to_load = DIAMOND_SKIN
         self.image = pygame.Surface([self.width, self.height])
         self.image.set_colorkey(BLACK)
         self.image.blit(image_to_load, (0,0))
@@ -64,10 +62,11 @@ class Wetsuit (pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.x_change = 0
-        self.y_change = 0
+        image_to_load = pygame.transform.scale(WETSUIT_SKIN, (self.width, self.height))
 
-        self.image = self.game.wetsuit_spritesheet.get_sprite(3, 2, self.width, self.height)
+        self.image = pygame.Surface([self.width, self.height])
+        self.image.set_colorkey(BLACK)
+        self.image.blit(image_to_load, (0, 0))
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x

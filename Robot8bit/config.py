@@ -21,20 +21,25 @@ GROUND_LAYER = 1
 ROBOT_SPEED = 3
 ENEMY_SPEED = 2
 
-# WETSUIT = pygame.image.load("assets/Sin nombre.png")
+WETSUIT_SKIN = pygame.image.load("assets/water.png")
 ROBOT_SKIN = pygame.image.load("assets/single.png")
 DIAMOND_SKIN = pygame.image.load("assets/diamond.png")
 POTION_SKIN = pygame.image.load("assets/pocion.png")
 BOMB_SKIN = pygame.image.load("assets/bomb.png")
 HEART_SKIN = pygame.image.load("assets/heart.png")
+SINGLE_WETSUIT = pygame.image.load("assets/singleWetSuit.png")
 
 diamond_tamano = (40, 40)
 bomb_tamano = (35, 35)
 heart_tamano = (40, 40)
+traje_estado = (80, 80)
 
+WETSUIT = pygame.transform.scale(SINGLE_WETSUIT, heart_tamano)
 HEART = pygame.transform.scale(HEART_SKIN, heart_tamano)
 DIAMOND = pygame.transform.scale(DIAMOND_SKIN, diamond_tamano)
 BOMB = pygame.transform.scale(BOMB_SKIN, bomb_tamano)
+CON_TRAJE = pygame.transform.scale(SINGLE_WETSUIT, traje_estado)
+SIN_TRAJE = pygame.transform.scale(ROBOT_SKIN, traje_estado)
 
 RED = (250, 0, 0)
 BLACK = (0, 0, 0)
@@ -42,69 +47,3 @@ BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
 mapa_a_cargar = 'mapa.txt'
-
-# TILEMAP
-# map_design = [
-#     'MMMMMMMMMMMMMMMMMMMM',
-#     'M R                M',
-#     'M    MMMMMMMMM     M',
-#     'M    M             M',
-#     'M    MMMMM         M',
-#     'M    M             M',
-#     'M                  M',
-#     'M                  M',
-#     'M               E  M',
-#     'M            MM    M',
-#     'M            MM    M',
-#     'M   E        MM    M',
-#     'M      MMMMMMMM    M',
-#     'M                  M',
-#     'MMMMMMMMMMMMMMMMMMMM',
-# ]
-
-# def cargar_mapa(nombre_archivo):
-#     with open(nombre_archivo, 'r') as archivo:
-#         contenido = [linea.strip() for linea in archivo]
-#
-#     return contenido
-
-# Cargar el mapa desde el archivo
-# nombre_archivo = 'mapa.txt'
-# mapa = cargar_mapa(nombre_archivo)
-
-# Ahora puedes utilizar el contenido del mapa en tu juego con pygame
-# Por ejemplo, imprimirlo en la consola
-# for fila in mapa:
-#     print(fila)
-
-# ===================================================================================
-
-# EJEMPLO DE COMO SERIA LA CREACION DEL MAPA EN UN FICHERO SEGUN LUISMO
-# BOMVAS DIAMANTES TRAJE Y POCIONES CON SU CANTIDAD
-
-# TRANSFORMAR ESTO EN UN ARRAY DE CLAVE Y VALOR (DICCIONARIO)
-# B:7, D:6, T:1, P:3
-#
-# MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-# M                                     M
-# M     A                               M
-# M     AAAAAA                          M
-# M       AAA                           M
-# M     AAAAA                           M
-# M                                     M
-# M                                     M
-# M    R          MMMMMMMMMMMMMMMMMMMMMMM
-# M                      MM             M
-# M                     MM              M
-# M          MMMMMMMMMMMMMMMMMMMMMMMMMMMM
-# M                                     M
-# M        E                            M
-# M                                     M
-# M                                     M
-# M                   E                 M
-# M                                     M
-# M                                     M
-# M          AAAAA                      M
-# M         AAAAAAAA                    M
-# M          AAAA                       M
-# MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM

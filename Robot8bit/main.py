@@ -135,10 +135,22 @@ class Game:
                 self.screen.blit(BOMB, (1250, 170))
                 self.screen.blit(bomb_text, (1300, 180))
 
+                self.screen.blit(WETSUIT, (1250, 240))
+                if sprite.wetsuit_inventory == True:
+                    traje_text = self.font.render('x 1', True, WHITE)
+                    self.screen.blit(traje_text, (1300, 250))
+                else:
+                    traje_text = self.font.render('x 0', True, WHITE)
+                    self.screen.blit(traje_text, (1300, 250))
+
                 if sprite.water_shirt == True:
-                    traje = self.font.render('Traje puesto', True, WHITE)
-                    self.screen.blit(traje, (1240, 240))
-                    # self.screen.blit(ROBOT_SKIN, (1250, 200))
+                    # traje = self.font.render('Traje puesto', True, WHITE)
+                    # self.screen.blit(traje, (1240, 240))
+                    self.screen.blit(CON_TRAJE, (1270, 320))
+                else:
+                    self.screen.blit(SIN_TRAJE, (1270, 320))
+
+
 
         self.clock.tick(FPS)
         pygame.display.update()
