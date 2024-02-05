@@ -319,6 +319,7 @@ class Robot(pygame.sprite.Sprite):
 
                     if range <= explosion_radius:
                         sprite.kill()
+                        EXPLOSION_SOUND.play()
 
         elif not keys[pygame.K_b]:
             self.b_pressed = False

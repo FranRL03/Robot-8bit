@@ -33,6 +33,7 @@ SINGLE_WETSUIT = pygame.image.load("assets/singleWetSuit.png")
 
 COIN_SOUND = pygame.mixer.Sound("sounds/coinSound.mp3")
 MUSHROOM_SOUND = pygame.mixer.Sound("sounds/mushroom.mp3")
+EXPLOSION_SOUND = pygame.mixer.Sound("sounds/explosion.mp3")
 
 diamond_tamano = (40, 40)
 bomb_tamano = (35, 35)
