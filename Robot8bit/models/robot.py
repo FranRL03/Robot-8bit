@@ -5,6 +5,7 @@ import time
 import random
 
 from models.items import Bomb
+from models.spikes import Spikes
 
 
 class Spritesheet:
@@ -301,11 +302,27 @@ class Robot(pygame.sprite.Sprite):
     def launch_bomb(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_b] and not self.b_pressed and self._bomb_inventory >= 1:
-            bomb = Bomb(self.game, self.rect.x, self.rect.y)
-            bomb.collide_with_item()
             self.b_pressed = True
-            self._bomb_inventory -= 1
-            print("Bomba lanzada")
-            print("Bombas restantes:", self._bomb_inventory)
+            explosion_radius = TILESIZE * 2
+            self._bomb_inventory -=1
+
+            for sprite in self.game.all_sprites:
+                if isinstance(sprite, Spikes):
+                    position_x, position_y = sprite.rect.x, sprite.rect.y
+                    range = pygame.math.Vector2(position_x - self.rect.x, position_y - self.rect.y).length()
+
+                    if range <= explosion_radius:
+                        sprite.kill()
+
         elif not keys[pygame.K_b]:
             self.b_pressed = False
+        # if keys[pygame.K_b] and not self.b_pressed and self._bomb_inventory >= 1:
+        #     bomb = Bomb(self.game, self.rect.x, self.rect.y)
+        #     bomb.collide_with_item()
+        #     self.b_pressed = True
+        #     self._bomb_inventory -= 1
+        #     print("Bomba lanzada")
+        #     print("Bombas restantes:", self._bomb_inventory)
+        # elif not keys[pygame.K_b]:
+        #     self.b_pressed = False
+
