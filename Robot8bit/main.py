@@ -60,8 +60,6 @@ class Game:
                     Potion(self, x, y)
                 if clave == "D":
                     Diamond(self, x, y)
-                if clave == "T":
-                    Wetsuit(self, x, y)
                 if clave == "B":
                     Bomb(self, x, y)
 
@@ -79,6 +77,9 @@ class Game:
                     Lake(self, j, i)
                 if column == "S":
                     Spikes(self, j, i)
+                if column == "T":
+                    Wetsuit(self, j, i)
+
 
     def new(self):
 

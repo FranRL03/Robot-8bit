@@ -1,21 +1,21 @@
-B:5, D:2, T:1, P:1
+B:5, D:6, P:2
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 M                                     M
-M     A                               M
-M     AAAAAA             E            M
-M       AAA                           M
-M     AAAAA                           M
-M                                     M
-M                                     M
-M    R          SSSSSSSSSSSSSSSSSSSSSSM
-M                      SS             M
-M                    SSS              M
-M          SSSSSSSSSSSSSSSSSSSSSSSSSSSM
-M                                     M
-M         E                           M
-M                                     M
-M                                     M
-M                                     M
+M  E  A                               M
+M     AAAAAA          SSSSSSSSSSSSSSSSM
+M       AAA           SS              M
+M     AAAAA         SSSS              M
+M                 SSSS     T          M
+M               SS                    M
+M    R          SSSSSSSSSSSS   SSSSSSSM
+M                      SS   AAA       M
+M                    SSS      AAA     M
+M  AAAA    SSSSSSSSSSSSSSSSSSSSSSSSSSSM
+M   AA                   SS           M
+M         E     AA       SS           M
+M            AAAAA       SS           M
+M            AAA         SS           M
+MSSSSSSSSSSSSSSSSSSSSSSSSSS           M
 M                          E          M
 M                                     M
 M          AAAAA                      M
