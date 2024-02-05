@@ -150,6 +150,9 @@ class Game:
                 else:
                     self.screen.blit(SIN_TRAJE, (1270, 320))
 
+                score_text = self.font.render(f'Score: {sprite._score}', True, WHITE)
+                self.screen.blit(score_text, (1060, 50))
+
 
 
         self.clock.tick(FPS)

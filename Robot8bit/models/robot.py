@@ -27,6 +27,7 @@ class Robot(pygame.sprite.Sprite):
         self.wetsuit_inventory = False
         self._diamond_inventory = 0
         self._bomb_inventory = 0
+        self._score = 0
         self._layer = ROBOT_LAYER
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -142,6 +143,8 @@ class Robot(pygame.sprite.Sprite):
                 time.sleep(0.1)
                 self.vida -= 1
 
+                if self._score > 0:
+                    self._score -= 5
         if direccion == "y":
             hits = pygame.sprite.spritecollide(self, self.game.spikes, False)
             if hits:
@@ -153,6 +156,8 @@ class Robot(pygame.sprite.Sprite):
                 time.sleep(0.1)
                 self.vida -= 1
 
+                if self._score > 0:
+                    self._score -= 5
         if self.vida == 0:
             self.kill()
             self.game.playing = False
@@ -179,6 +184,7 @@ class Robot(pygame.sprite.Sprite):
             self._diamond_inventory += 1
             print(self._diamond_inventory)
             COIN_SOUND.play()
+            self._score += 10
 
     def collide_bomb(self):
         hits = pygame.sprite.spritecollide(self, self.game.bomb, True)

@@ -39,6 +39,8 @@ bomb_tamano = (35, 35)
 heart_tamano = (40, 40)
 traje_estado = (80, 80)
 
+fuente_tamano = 20
+
 WETSUIT = pygame.transform.scale(SINGLE_WETSUIT, heart_tamano)
 HEART = pygame.transform.scale(HEART_SKIN, heart_tamano)
 DIAMOND = pygame.transform.scale(DIAMOND_SKIN, diamond_tamano)
